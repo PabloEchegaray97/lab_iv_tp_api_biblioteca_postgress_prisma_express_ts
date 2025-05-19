@@ -1,0 +1,13 @@
+node_modules/
+.env
+/postgres/
+.pgdata/
+src/generated/
+.prisma/
+prisma/.env
+prisma/db.sqlite
+prisma/db.sqlite-journal
+*.db
+*.db-journal
+
+
