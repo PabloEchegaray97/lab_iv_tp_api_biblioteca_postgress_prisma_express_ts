@@ -93,4 +93,21 @@ export class UsuarioController {
       return res.status(500).json({ message: 'Error interno del servidor' });
     }
   }
+
+  async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+    try {
+      const { usuario, token } = await usuarioService.login(email, password);
+      return res.status(200).json({ usuario, token });
+    } catch (error: any) {
+      if (error.message === 'Usuario no encontrado') {
+        return res.status(401).json({ message: 'Credenciales inválidas email' });
+      }
+      if (error.message === 'Contraseña incorrecta') {
+        return res.status(401).json({ message: 'Credenciales inválidas password' });
+      }
+      return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+  }
+
 } 
